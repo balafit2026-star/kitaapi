@@ -1,9 +1,9 @@
 generator client {
-  provider = "prisma-client"
+  provider     = "prisma-client"
   output       = "../src/generated/prisma"
   moduleFormat = "cjs"
 }
-// 
+
 datasource db {
   provider = "mysql"
 }
@@ -20,14 +20,13 @@ model gallery_images {
   @@index([uploaded_at], map: "idx_gallery_uploaded_at")
 }
 
- model members {
-  id          String   @id @default(dbgenerated("(uuid())")) @db.Char(36)
+model members {
+  id                  String    @id @default(dbgenerated("(uuid())")) @db.Char(36)
   confed_id           String    @db.Text
   designation         String    @db.Text
   name                String    @db.Text
   firm_name           String    @db.Text
   mobile              String    @db.Text
-  password            String?   @db.Text  
   is_pst              Boolean
   photo               String    @db.Text
   food_habit          String    @db.Text
@@ -48,9 +47,9 @@ model gallery_images {
   child2_dob          DateTime? @db.Date
   tshirt_size         String    @db.Text
   created_at          DateTime  @default(now()) @db.Timestamp(0)
+  password            String?   @db.Text
 
   @@index([confed_id(length: 100)], map: "idx_members_confed_id")
   @@index([mobile(length: 100)], map: "idx_members_mobile")
   @@ignore
 }
-
